@@ -38,4 +38,4 @@ for i in range (0,30):
 # print(popsearch_list)
 
 rank = int(input('검색하려는 종목의 순위(1~30)를 입력하세요 > '))
-print(rank,'위',title[i-1],'의','검색비율은',popsearch_list[i-1][2],',','현재가는',popsearch_list[i-1][3],',','등락률은',popsearch_list[i-1][4],'입니다.')
+print(rank,'위',title[rank-1],'의','검색비율은',popsearch_list[rank-1][2],',','현재가는',popsearch_list[rank-1][3],',','등락률은',popsearch_list[rank-1][4],'입니다.')
