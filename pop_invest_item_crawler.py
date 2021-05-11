@@ -1,5 +1,7 @@
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
+import matplotlib.pyplot as plt
+import numpy as np
 
 URL = 'https://finance.naver.com/sise/lastsearch2.nhn'
 html = urlopen(URL)
@@ -34,8 +36,36 @@ for i in range (0,30):
     a.append(number[1 +10*i].get_text().strip()) #현재가
     a.append(number[3 + 10 * i].get_text().strip()) #등락률
     popsearch_list.append(a)
-
 # print(popsearch_list)
+worth=[]
+for i in range(0,30):
+    worth.append(number[1 +10*i].get_text().strip())
+
+worth1=[]
+for n in worth:
+    new = ''
+    for i in n:
+        if i.isalnum():
+            new+=i
+        else:
+            continue
+    worth1.append(new)
+
+worth2=[]
+for i in worth1:
+    t=float(i)
+    worth2.append(t)
+
+source=soup.find_all('title')
+for i in source:
+    source1=i.get_text()
 
 rank = int(input('검색하려는 종목의 순위(1~30)를 입력하세요 > '))
 print(rank,'위',title[rank-1],'의','검색비율은',popsearch_list[rank-1][2],',','현재가는',popsearch_list[rank-1][3],',','등락률은',popsearch_list[rank-1][4],'입니다.')
+
+print("출처는", source1, "입니다.")
+x=np.arange(30)
+plt.rc('font', family='Malgun Gothic')
+plt.bar(x, worth2)
+plt.xticks(x, title, rotation='vertical')
+plt.show()
