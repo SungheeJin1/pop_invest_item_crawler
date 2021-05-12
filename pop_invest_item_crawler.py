@@ -60,12 +60,28 @@ source=soup.find_all('title')
 for i in source:
     source1=i.get_text()
 
-rank = int(input('검색하려는 종목의 순위(1~30)를 입력하세요 > '))
-print(rank,'위',title[rank-1],'의','검색비율은',popsearch_list[rank-1][2],',','현재가는',popsearch_list[rank-1][3],',','등락률은',popsearch_list[rank-1][4],'입니다.')
+title1 = [] #여기부터
+for i in range(0,30):
+    title2 = title[i]
+    i = i+1
+    i = str(i)
+    string = i+'위 '+title2
+    title1.append(string)
 
-print("출처는", source1, "입니다.")
+y = []
+for i in range(1,31):
+    j = 31 - i
+    y.append(j)
+
 x=np.arange(30)
 plt.rc('font', family='Malgun Gothic')
-plt.barh(x, worth2)
-plt.yticks(x, title)
+plt.suptitle('검색 상위 투자종목의 현재가')
+plt.xlabel('현재가')
+plt.ylabel('종목명')
+plt.barh(y, worth2)
+plt.yticks(y, title1)
 plt.show()
+
+rank = int(input('검색하려는 종목의 순위(1~30)를 입력하세요 > '))
+print(rank,'위',title[rank-1],'의','검색비율은',popsearch_list[rank-1][2],',','현재가는',popsearch_list[rank-1][3],',','등락률은',popsearch_list[rank-1][4],'입니다.')
+print("출처는", source1, "입니다.")
