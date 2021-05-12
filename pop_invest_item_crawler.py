@@ -66,6 +66,6 @@ print(rank,'위',title[rank-1],'의','검색비율은',popsearch_list[rank-1][2]
 print("출처는", source1, "입니다.")
 x=np.arange(30)
 plt.rc('font', family='Malgun Gothic')
-plt.bar(x, worth2)
-plt.xticks(x, title, rotation='vertical')
+plt.barh(x, worth2)
+plt.yticks(x, title)
 plt.show()
